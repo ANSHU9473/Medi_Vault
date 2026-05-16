@@ -1,0 +1,198 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+    --bg-primary: #0d1117;
+    --bg-secondary: #161b22;
+    --bg-tertiary: #21262d;
+    --text-primary: #e6edf3;
+    --text-secondary: #8b949e;
+    --accent-blue: #4c8bf5;
+    --accent-blue-dim: #2d5cb8;
+    --accent-red: #c0392b;
+    --glass-bg: rgba(22, 27, 34, 0.75);
+    --glass-border: rgba(139, 148, 158, 0.12);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Inter', system-ui, sans-serif;
+    background: var(--bg-primary);
+    color: var(--text-primary);
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Scrollbar Styles */
+::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--bg-tertiary);
+    border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #30363d;
+}
+
+/* Glass Morphism Utilities */
+@layer utilities {
+    .glass {
+        background: var(--glass-bg);
+        backdrop-filter: blur(16px);
+        -webkit-backdrop-filter: blur(16px);
+        border: 1px solid var(--glass-border);
+    }
+
+    .glass-light {
+        background: rgba(255, 255, 255, 0.03);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .glass-strong {
+        background: rgba(22, 27, 34, 0.90);
+        backdrop-filter: blur(24px);
+        -webkit-backdrop-filter: blur(24px);
+        border-bottom: 1px solid rgba(139, 148, 158, 0.12);
+    }
+
+    /* Primary gradient — calm slate-blue, no rainbow */
+    .text-gradient {
+        background: linear-gradient(135deg, #a8c4f5, #4c8bf5);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .text-gradient-warm {
+        background: linear-gradient(135deg, #f0a070, #e05555);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+    }
+
+    .bg-gradient-medical {
+        background: linear-gradient(135deg, #0d1117 0%, #161b22 50%, #0d1117 100%);
+    }
+
+    /* Single-hue accent — professional blue, not teal-to-cyan */
+    .bg-gradient-teal {
+        background: linear-gradient(135deg, #3b6fd4, #4c8bf5);
+    }
+
+    .bg-gradient-emergency {
+        background: linear-gradient(135deg, #b91c1c, #c0392b);
+    }
+
+    /* Subtle shadows — no massive glows */
+    .shadow-glow-teal {
+        box-shadow: 0 2px 12px rgba(76, 139, 245, 0.18);
+    }
+
+    .shadow-glow-red {
+        box-shadow: 0 2px 12px rgba(192, 57, 43, 0.22);
+    }
+
+    .shadow-glow-blue {
+        box-shadow: 0 2px 12px rgba(76, 139, 245, 0.15);
+    }
+}
+
+/* Emergency Button Pulse — kept but toned down */
+@keyframes emergency-pulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 0 0 rgba(192, 57, 43, 0.35);
+    }
+
+    50% {
+        box-shadow: 0 0 0 8px rgba(192, 57, 43, 0);
+    }
+}
+
+.emergency-pulse {
+    animation: emergency-pulse 2.5s ease-in-out infinite;
+}
+
+/* Folder Card Hover */
+.folder-card {
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.folder-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px -4px rgba(0, 0, 0, 0.4);
+}
+
+/* Document Carousel */
+.carousel-container {
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+}
+
+.carousel-item {
+    scroll-snap-align: start;
+}
+
+/* FAB Button */
+.fab-button {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.fab-button:hover {
+    transform: scale(1.08) rotate(45deg);
+}
+
+/* Modal Overlay */
+.modal-overlay {
+    animation: fadeIn 0.2s ease-out;
+}
+
+/* Input Focus */
+input:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    border-color: var(--accent-blue);
+    box-shadow: 0 0 0 2px rgba(76, 139, 245, 0.12);
+}
+
+/* Loading Skeleton */
+@keyframes shimmer {
+    0% {
+        background-position: -200% 0;
+    }
+
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+.skeleton {
+    background: linear-gradient(90deg, var(--bg-secondary) 25%, var(--bg-tertiary) 50%, var(--bg-secondary) 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+}
