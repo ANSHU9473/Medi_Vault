@@ -10,7 +10,7 @@ export default function Sidebar({ open, onClose }) {
     { name: 'Dashboard', href: '/dashboard', icon: Home },
     { name: 'Emergency Profile', href: '/dashboard/profile', icon: Activity },
   ];
-
+//   const navigation = 
   return (
     <>
       <div
